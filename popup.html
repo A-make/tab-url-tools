@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Tab URL Tools</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      width: 420px;
+      padding: 12px;
+      margin: 0;
+      color: #0f172a;
+      background: #ffffff;
+    }
+    h1 {
+      font-size: 14px;
+      margin: 0 0 14px;
+    }
+    h2 {
+      font-size: 12px;
+      margin: 16px 0 8px;
+    }
+    textarea {
+      box-sizing: border-box;
+      width: 100%;
+      min-height: 220px;
+      padding: 8px;
+      resize: both;
+      font: inherit;
+      font-size: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      color: inherit;
+      background: #ffffff;
+    }
+    select {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 4px;
+    }
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    button {
+      width: 100%;
+      padding: 8px;
+      font-size: 13px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      background: #2563eb;
+      color: white;
+    }
+    .secondary-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .secondary-actions button {
+      flex: 1;
+      background: #475569;
+    }
+    .secondary-actions button:hover {
+      background: #334155;
+    }
+    .view-button {
+      margin-top: 10px;
+      background: #0f766e;
+    }
+    .view-button:hover {
+      background: #0d6158;
+    }
+    body.larger-view {
+      box-sizing: border-box;
+      width: min(760px, calc(100vw - 32px));
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    body.larger-view textarea {
+      min-height: min(60vh, 600px);
+      max-width: none;
+    }
+    body.larger-view .view-button {
+      display: none;
+    }
+    button:hover {
+      background: #1d4ed8;
+    }
+    #status {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #16a34a;
+      min-height: 14px;
+      text-align: center;
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        color: #e2e8f0;
+        background: #1e293b;
+      }
+      textarea,
+      select {
+        color: #e2e8f0;
+        background: #0f172a;
+        border-color: #475569;
+      }
+      .secondary-actions button {
+        background: #64748b;
+      }
+      .secondary-actions button:hover {
+        background: #94a3b8;
+        color: #0f172a;
+      }
+      .view-button {
+        background: #14b8a6;
+        color: #042f2e;
+      }
+      .view-button:hover {
+        background: #2dd4bf;
+      }
+    }
+    @media (max-width: 520px) {
+      body.larger-view {
+        width: 100%;
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Tab URL Tools (This Window)</h1>
+  <select id="format">
+    <option value="url" selected>URL only</option>
+    <option value="markdown">Title - Markdown link</option>
+    <option value="plain">Title + URL (plain text)</option>
+  </select>
+  <button id="copyBtn">Copy to Clipboard</button>
+  <h2>Open or save pasted URLs</h2>
+  <textarea id="urlInput" placeholder="Paste URLs here, one per line or separated by spaces"></textarea>
+  <button id="extractBtn" class="extract-button" type="button">Extract URLs</button>
+  <label for="bookmarkFolder">Save favourites in</label>
+  <select id="bookmarkFolder" aria-label="Bookmark folder">
+    <option value="">Loading folders...</option>
+  </select>
+  <div class="secondary-actions">
+    <button id="openBtn" type="button">Open URLs</button>
+    <button id="bookmarkBtn" type="button">Save Favourites</button>
+  </div>
+  <div id="status"></div>
+  <button id="openViewBtn" class="view-button" type="button">Open in tab</button>
+  <script src="utils.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

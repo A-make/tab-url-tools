@@ -1,0 +1,7 @@
+{
+  "name": "tab-url-tools",
+  "private": true,
+  "scripts": {
+    "test": "node --test"
+  }
+}
